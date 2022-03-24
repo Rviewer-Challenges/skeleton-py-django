@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - main
+      - devel
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - main
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate coverage
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+        run: |
+          pip install -U pip
+          pip install poetry
+          poetry install
+          coverage run --source='api' --omit='api/tests/*' manage.py test
+          coverage report
+          coverage xml
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
