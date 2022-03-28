@@ -15,6 +15,7 @@ on:
 
 jobs:
   sonarqube:
+    if: 'Rviewer-Challenges/skeleton-py-django-rest' != github.repository
     runs-on: ubuntu-latest
     services:
       postgres-skeleton-db:
