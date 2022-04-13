@@ -2,7 +2,7 @@
 name = "Rviewer: Python & django skeleton"
 version = "0.1.0"
 description = ""
-authors = ["Mauro Gómez <mgomez@getwith.io>"]
+authors = ["rviewer-team <dev@rviewer.io>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
