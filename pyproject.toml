@@ -6,7 +6,7 @@ authors = ["rviewer-team <dev@rviewer.io>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^4.0.2"
+Django = "^4.1"
 djangorestframework = "^3.13.1"
 psycopg2-binary = "^2.9.3"
 
