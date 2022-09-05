@@ -17,11 +17,11 @@ COPY pyproject.toml                 ${APP_DIR}/pyproject.toml
 RUN apk add --update --no-cache                                                                     \
     curl                                                                                            \
     build-base                                                                                      \
+    libffi-dev                                                                                      \
     postgresql-dev
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py           \
-      | POETRY_HOME=${POETRY_HOME} python -                                                     &&  \
-    poetry config virtualenvs.create false                                                      &&  \
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=${POETRY_HOME} python3 -           && \
+    poetry config virtualenvs.create false                                                       && \
     poetry install --no-interaction
 
 EXPOSE 5050
